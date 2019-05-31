@@ -5,5 +5,29 @@
     "fields": {
         "name": "shirt"
     }
+},
+{
+    "model": "clothes.condition",
+    "pk": "good",
+    "fields": {
+        "order": 1,
+        "name": "good"
+    }
+},
+{
+    "model": "clothes.condition",
+    "pk": "average",
+    "fields": {
+        "order": 2,
+        "name": "average"
+    }
+},
+{
+    "model": "clothes.condition",
+    "pk": "bad",
+    "fields": {
+        "order": 3,
+        "name": "bad"
+    }
 }
 ]

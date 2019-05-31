@@ -10,3 +10,10 @@ class TypeAdmin(VersionAdmin):
     list_display = ('id', 'name')
     list_display_links = ('id', 'name')
     search_fields = ('id', 'name')
+
+
+@admin.register(models.Condition)
+class ConditionAdmin(VersionAdmin):
+    list_display = ('order', 'id', 'name')
+    list_display_links = ('id', 'name')
+    search_fields = ('id', 'name')

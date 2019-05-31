@@ -13,3 +13,17 @@ class Type(models.Model):
 
     def __str__(self):
         return str(self.name)
+
+
+class Condition(models.Model):
+    order = models.IntegerField(_('order'), db_index=True)
+    id = models.CharField(_('id'), max_length=50, primary_key=True, db_index=True)
+    name = models.CharField(_('name'), max_length=50, db_index=True)
+
+    class Meta:
+        verbose_name = _('condition')
+        verbose_name_plural = _('conditions')
+        ordering = ['order', 'id']
+
+    def __str__(self):
+        return str(self.name)
