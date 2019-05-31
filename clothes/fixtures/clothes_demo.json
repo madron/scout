@@ -7,6 +7,13 @@
     }
 },
 {
+    "model": "clothes.type",
+    "pk": "shoe",
+    "fields": {
+        "name": "shoe"
+    }
+},
+{
     "model": "clothes.condition",
     "pk": "good",
     "fields": {
@@ -28,6 +35,42 @@
     "fields": {
         "order": 3,
         "name": "bad"
+    }
+},
+{
+    "model": "clothes.inventory",
+    "pk": 11,
+    "fields": {
+        "type": "shirt",
+        "condition": "good",
+        "quantity": 3
+    }
+},
+{
+    "model": "clothes.inventory",
+    "pk": 12,
+    "fields": {
+        "type": "shirt",
+        "condition": "average",
+        "quantity": 2
+    }
+},
+{
+    "model": "clothes.inventory",
+    "pk": 22,
+    "fields": {
+        "type": "shoe",
+        "condition": "average",
+        "quantity": 1
+    }
+},
+{
+    "model": "clothes.inventory",
+    "pk": 23,
+    "fields": {
+        "type": "shoe",
+        "condition": "bad",
+        "quantity": 2
     }
 }
 ]

@@ -27,3 +27,17 @@ class Condition(models.Model):
 
     def __str__(self):
         return str(self.name)
+
+
+class Inventory(models.Model):
+    type = models.ForeignKey(Type, on_delete=models.CASCADE, verbose_name=_('type'))
+    condition = models.ForeignKey(Condition, on_delete=models.CASCADE, verbose_name=_('condition'))
+    quantity = models.PositiveIntegerField(_('quantity'), default=0)
+
+    class Meta:
+        verbose_name = _('inventory')
+        verbose_name_plural = _('inventory')
+        ordering = ['type', 'condition']
+
+    def __str__(self):
+        return '{} - {}'.format(self.type, self.condition)
