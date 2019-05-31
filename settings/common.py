@@ -3,6 +3,7 @@ from .default import *
 
 INSTALLED_APPS = [
     'authentication',
+    'clothes',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

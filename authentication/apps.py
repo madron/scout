@@ -4,4 +4,4 @@ from django.utils.translation import gettext_lazy as _
 
 class AuthenticationConfig(AppConfig):
     name = 'authentication'
-    verbose_name = _("Authentication")
+    verbose_name = _('authentication')
