@@ -1,0 +1,9 @@
+[
+{
+    "model": "clothes.type",
+    "pk": "shirt",
+    "fields": {
+        "name": "shirt"
+    }
+}
+]
