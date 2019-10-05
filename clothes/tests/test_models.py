@@ -14,7 +14,18 @@ class ConditionModelTest(TestCase):
         self.assertEqual(str(obj), 'good')
 
 
+class CatalogModelTest(TestCase):
+    def test_str(self):
+        obj = factories.CatalogFactory(type__name='shirt', condition__name='good')
+        self.assertEqual(str(obj), 'shirt - good')
+
+
 class InventoryModelTest(TestCase):
     def test_str(self):
-        obj = factories.InventoryFactory(type__name='shirt', condition__name='good', quantity=3)
-        self.assertEqual(str(obj), 'shirt - good')
+        obj = factories.InventoryFactory(
+            catalog__type__name='shirt',
+            catalog__condition__name='good',
+            size='M',
+            quantity=3,
+        )
+        self.assertEqual(str(obj), 'shirt - good - M')

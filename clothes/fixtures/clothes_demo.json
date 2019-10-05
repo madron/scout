@@ -3,14 +3,14 @@
     "model": "clothes.type",
     "pk": "shirt",
     "fields": {
-        "name": "shirt"
+        "name": "Shirt"
     }
 },
 {
     "model": "clothes.type",
     "pk": "shoe",
     "fields": {
-        "name": "shoe"
+        "name": "Shoe"
     }
 },
 {
@@ -18,7 +18,7 @@
     "pk": "good",
     "fields": {
         "order": 1,
-        "name": "good"
+        "name": "Good"
     }
 },
 {
@@ -26,7 +26,7 @@
     "pk": "average",
     "fields": {
         "order": 2,
-        "name": "average"
+        "name": "Average"
     }
 },
 {
@@ -34,43 +34,97 @@
     "pk": "bad",
     "fields": {
         "order": 3,
-        "name": "bad"
+        "name": "Bad"
     }
 },
 {
-    "model": "clothes.inventory",
+    "model": "clothes.catalog",
     "pk": 11,
     "fields": {
         "type": "shirt",
         "condition": "good",
-        "quantity": 3
+        "price": "5.00"
     }
 },
 {
-    "model": "clothes.inventory",
+    "model": "clothes.catalog",
     "pk": 12,
     "fields": {
         "type": "shirt",
         "condition": "average",
-        "quantity": 2
+        "price": "4.00"
     }
 },
 {
-    "model": "clothes.inventory",
+    "model": "clothes.catalog",
     "pk": 22,
     "fields": {
         "type": "shoe",
         "condition": "average",
+        "price": "15.00"
+    }
+},
+{
+    "model": "clothes.catalog",
+    "pk": 23,
+    "fields": {
+        "type": "shoe",
+        "condition": "bad",
+        "price": "12.00"
+    }
+},
+{
+    "model": "clothes.inventory",
+    "pk": 111,
+    "fields": {
+        "catalog": 11,
+        "size": "M",
         "quantity": 1
     }
 },
 {
     "model": "clothes.inventory",
-    "pk": 23,
+    "pk": 112,
     "fields": {
-        "type": "shoe",
-        "condition": "bad",
+        "catalog": 11,
+        "size": "L",
         "quantity": 2
+    }
+},
+{
+    "model": "clothes.inventory",
+    "pk": 121,
+    "fields": {
+        "catalog": 12,
+        "size": "M",
+        "quantity": 2
+    }
+},
+{
+    "model": "clothes.inventory",
+    "pk": 221,
+    "fields": {
+        "catalog": 22,
+        "size": "42",
+        "quantity": 1
+    }
+},
+{
+    "model": "clothes.inventory",
+    "pk": 231,
+    "fields": {
+        "catalog": 23,
+        "size": "38",
+        "quantity": 1
+    }
+},
+{
+    "model": "clothes.inventory",
+    "pk": 232,
+    "fields": {
+        "catalog": 23,
+        "size": "39",
+        "quantity": 1
     }
 }
 ]

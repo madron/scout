@@ -1,4 +1,5 @@
 import factory
+from decimal import Decimal
 from .. import models
 
 
@@ -19,10 +20,18 @@ class ConditionFactory(factory.django.DjangoModelFactory):
     name = 'shirt'
 
 
+class CatalogFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = models.Catalog
+
+    type = factory.SubFactory(TypeFactory)
+    condition = factory.SubFactory(ConditionFactory)
+    price = Decimal('0.00')
+
+
 class InventoryFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = models.Inventory
 
-    type = factory.SubFactory(TypeFactory)
-    condition = factory.SubFactory(ConditionFactory)
+    catalog = factory.SubFactory(CatalogFactory)
     quantity = 1
