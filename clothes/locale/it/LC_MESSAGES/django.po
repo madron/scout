@@ -24,7 +24,7 @@ msgstr "tipo"
 
 #: clothes/apps.py:7
 msgid "clothes"
-msgstr "verstiario"
+msgstr "vestiario"
 
 #: clothes/models.py:6 clothes/models.py:20
 msgid "id"
