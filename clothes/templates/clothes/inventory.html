@@ -1,0 +1,30 @@
+{% extends 'clothes/base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Clothes Inventory" %}{% endblock %}
+
+{% block content %}
+<h1>{% trans "Clothes Inventory" %}</h1>
+<div class="card">
+    <table>
+        <thead>
+            <th>{% trans "type" %}</th>
+            <th>{% trans "size" %}</th>
+            <th>{% trans "condition" %}</th>
+            <th>{% trans "quantity" %}</th>
+            <th>{% trans "price" %}</th>
+        </thead>
+        <tbody>
+{% for x in inventory %}
+            <tr>
+                <th>{% ifchanged %}{{ x.catalog.type.name }}{% endifchanged %}</th>
+                <th>{% ifchanged %}{{ x.size }}{% endifchanged %}</th>
+                <th>{{ x.catalog.condition.name }}</th>
+                <th>{{ x.quantity }}</th>
+                <th>{{ x.catalog.price }}</th>
+            </tr>
+{% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

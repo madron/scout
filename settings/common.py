@@ -5,6 +5,7 @@ INSTALLED_APPS = [
     'authentication',
     'clothes',
     'reversion',
+    'material',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
