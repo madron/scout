@@ -8,5 +8,10 @@ class InventoryTest(TestCase):
         self.url = reverse('clothes:inventory')
 
     def test_empty(self):
+        factories.InventoryFactory(
+            catalog__type__name='Shirt',
+            quantity=1
+        )
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Shirt')
