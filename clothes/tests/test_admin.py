@@ -10,6 +10,7 @@ class TypeAdminTest(TestCase):
         UserFactory()
         self.assertTrue(self.client.login(username='test', password='pass'))
         self.list = reverse('admin:clothes_type_changelist')
+        self.pk = factories.TypeFactory().pk
 
     def test_list(self):
         response = self.client.get(self.list)
@@ -26,14 +27,12 @@ class TypeAdminTest(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_detail(self):
-        obj = factories.TypeFactory()
-        url = reverse('admin:clothes_type_change', args=(obj.pk,))
+        url = reverse('admin:clothes_type_change', args=(self.pk,))
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
 
     def test_delete(self):
-        obj = factories.TypeFactory()
-        url = reverse('admin:clothes_type_delete', args=(obj.pk,))
+        url = reverse('admin:clothes_type_delete', args=(self.pk,))
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
 
@@ -43,6 +42,7 @@ class ConditionAdminTest(TestCase):
         UserFactory()
         self.assertTrue(self.client.login(username='test', password='pass'))
         self.list = reverse('admin:clothes_condition_changelist')
+        self.pk = factories.ConditionFactory().pk
 
     def test_list(self):
         response = self.client.get(self.list)
@@ -59,14 +59,12 @@ class ConditionAdminTest(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_detail(self):
-        obj = factories.ConditionFactory()
-        url = reverse('admin:clothes_condition_change', args=(obj.pk,))
+        url = reverse('admin:clothes_condition_change', args=(self.pk,))
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
 
     def test_delete(self):
-        obj = factories.ConditionFactory()
-        url = reverse('admin:clothes_condition_delete', args=(obj.pk,))
+        url = reverse('admin:clothes_condition_delete', args=(self.pk,))
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
 
@@ -76,6 +74,7 @@ class CatalogAdminTest(TestCase):
         UserFactory()
         self.assertTrue(self.client.login(username='test', password='pass'))
         self.list = reverse('admin:clothes_catalog_changelist')
+        self.pk = factories.CatalogFactory().pk
 
     def test_list(self):
         response = self.client.get(self.list)
@@ -92,14 +91,12 @@ class CatalogAdminTest(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_detail(self):
-        obj = factories.CatalogFactory()
-        url = reverse('admin:clothes_catalog_change', args=(obj.pk,))
+        url = reverse('admin:clothes_catalog_change', args=(self.pk,))
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
 
     def test_delete(self):
-        obj = factories.CatalogFactory()
-        url = reverse('admin:clothes_catalog_delete', args=(obj.pk,))
+        url = reverse('admin:clothes_catalog_delete', args=(self.pk,))
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
 
@@ -109,6 +106,7 @@ class InventoryAdminTest(TestCase):
         UserFactory()
         self.assertTrue(self.client.login(username='test', password='pass'))
         self.list = reverse('admin:clothes_inventory_changelist')
+        self.pk = factories.InventoryFactory().pk
 
     def test_list(self):
         response = self.client.get(self.list)
@@ -119,19 +117,24 @@ class InventoryAdminTest(TestCase):
         response = self.client.get(self.list, data)
         self.assertEqual(response.status_code, 200)
 
+    def test_filter_type(self):
+        factories.InventoryFactory(catalog__type__id='socks', catalog__type__name='Socks')
+        data = dict(type='socks')
+        response = self.client.get(self.list, data)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Socks')
+
     def test_add(self):
         url = reverse('admin:clothes_inventory_add')
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
 
     def test_detail(self):
-        obj = factories.InventoryFactory()
-        url = reverse('admin:clothes_inventory_change', args=(obj.pk,))
+        url = reverse('admin:clothes_inventory_change', args=(self.pk,))
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
 
     def test_delete(self):
-        obj = factories.InventoryFactory()
-        url = reverse('admin:clothes_inventory_delete', args=(obj.pk,))
+        url = reverse('admin:clothes_inventory_delete', args=(self.pk,))
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
