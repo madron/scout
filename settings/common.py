@@ -1,3 +1,4 @@
+import os
 from .default import *
 
 
@@ -13,3 +14,5 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+LANGUAGE_CODE = os.getenv('LANGUAGE_CODE', 'en-us')
