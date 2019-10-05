@@ -1,0 +1,43 @@
+version: '2'
+
+services:
+  db:
+    image: postgres:12.0-alpine
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - db:/var/lib/postgresql/data
+
+  django:
+    build: .
+    environment:
+      - DEBUG=True
+      - DATABASE_HOST=db
+      - DATABASE_PORT=5432
+      - DATABASE_USER=postgres
+      - DATABASE_PASSWORD=postgres
+    volumes:
+      - media:/media
+    depends_on:
+      - "db"
+    links:
+      - "db:db"
+
+  nginx:
+    build: .
+    volumes:
+      - media:/media
+    depends_on:
+      - "django"
+    links:
+      - "django:django"
+    command: nginx
+
+
+volumes:
+  db:
+    driver: local
+  media:
+    driver: local
