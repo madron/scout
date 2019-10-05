@@ -2,6 +2,7 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.utils.translation import ugettext as _
 from reversion.admin import VersionAdmin
+from . import filters
 from . import models
 
 
@@ -26,25 +27,10 @@ class CatalogAdmin(VersionAdmin):
     search_fields = ('type__name', 'condition__name')
 
 
-class InventoryTypeFilter(admin.SimpleListFilter):
-    title = _('type')
-    parameter_name = 'type'
-
-    def lookups(self, request, model_admin):
-        types = models.Type.objects.order_by('id')
-        return [(t.id, t.name) for t in types]
-
-    def queryset(self, request, queryset):
-        value = self.value()
-        if value:
-            return queryset.filter(catalog__type=value)
-        return queryset
-
-
 @admin.register(models.Inventory)
 class InventoryAdmin(VersionAdmin):
     list_display = ('catalog_type', 'catalog_condition', 'size', 'quantity', 'catalog_price')
     list_display_links = ('size',)
     list_editable = ('quantity',)
-    list_filter = (InventoryTypeFilter,)
+    list_filter = (filters.InventoryTypeFilter,)
     search_fields = ('catalog__type__name', 'catalog__condition__name')
